@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lộ trình học đại học gắn với mục tiêu nghề nghiệp</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--tx:#1c2433;--mut:#64708a;--bd:#dde3ef;--pr:#3b5bdb;--pr2:#edf1ff;--ok:#2b8a3e;--warn:#e8590c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151d;--card:#1b2030;--tx:#e8ecf5;--mut:#9aa6c0;--bd:#2d3550;--pr:#7c96ff;--pr2:#232b4a;--ok:#69db7c;--warn:#ffa94d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151d;--card:#1b2030;--tx:#e8ecf5;--mut:#9aa6c0;--bd:#2d3550;--pr:#7c96ff;--pr2:#232b4a;--ok:#69db7c;--warn:#ffa94d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:1.6rem;margin:.2em 0}h2{font-size:1.2rem;margin:1.6em 0 .6em}
+p.sub{color:var(--mut);margin-top:0}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:16px}
+label{display:block;font-weight:600;margin:14px 0 6px;font-size:.93rem}
+select,input,textarea{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+textarea{min-height:70px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{margin:0;font-weight:500;display:flex;align-items:center;gap:6px;border:1px solid var(--bd);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem}
+.chips input{width:auto}
+.chips label:has(input:checked){background:var(--pr2);border-color:var(--pr)}
+button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 16px;border-radius:10px}
+button.p{background:var(--pr);border-color:var(--pr);color:#fff;font-weight:600}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+#result{display:none}
+.cd{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.cd div{flex:1;min-width:70px;text-align:center;background:var(--pr2);border-radius:12px;padding:10px 4px}
+.cd b{display:block;font-size:1.6rem;color:var(--pr)}.cd span{font-size:.78rem;color:var(--mut)}
+.phase{border-left:4px solid var(--pr);padding-left:14px;margin:18px 0}
+.phase h3{margin:0 0 6px;font-size:1.05rem}
+.phase ul{margin:4px 0;padding-left:20px}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:6px;background:var(--pr2);color:var(--pr);margin-right:6px}
+.cur{background:var(--pr2);border-radius:12px;padding:2px 14px}
+.todo li{margin:6px 0}
+.log{display:flex;gap:8px;align-items:flex-start;border-bottom:1px solid var(--bd);padding:8px 0}
+.log img{max-width:90px;border-radius:8px}.log .x{margin-left:auto}
+.hide{display:none}
+.ck{display:flex;gap:8px;font-weight:400;margin:6px 0;cursor:pointer;font-size:1rem}.ck input{width:auto;margin-top:5px}
+.phase ul{list-style:none;padding-left:0}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:4px 12px;border-radius:999px;background:var(--pr2);color:var(--pr)}
+.fin h3{font-size:1rem;margin:20px 0 8px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:600px){.grid3{grid-template-columns:1fr 1fr}}
+.grid3 div{border:1px solid var(--bd);border-radius:10px;padding:10px;font-weight:600;font-size:.9rem}.grid3 small{display:block;color:var(--mut);font-size:.75rem;font-weight:400}
+.note{border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:8px 0;font-size:.93rem}.note.hi{background:var(--pr2);border-color:var(--pr)}
+.ms{display:flex;gap:12px;border:1px solid var(--bd);border-radius:12px;padding:12px;margin:8px 0}.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--pr2);color:var(--pr);font-weight:700;display:grid;place-items:center;font-size:.85rem}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;overflow-x:auto;background:var(--bg);padding:8px 0;margin-bottom:10px}
+.tabs button{white-space:nowrap;border-radius:999px;padding:8px 14px;font-size:.9rem}
+.tabs button.on{background:var(--pr);border-color:var(--pr);color:#fff;font-weight:600}
+.off{display:none}
+@media print{.off{display:block!important}.tabs{display:none!important}}
+@media print{.noprint,button,.card form{display:none!important}body{background:#fff;color:#000}.card{border:0}}
+</style>
+</head>
+<body>
+<main>
+<h1>🎓 Lộ trình học đại học gắn với mục tiêu nghề nghiệp</h1>
+<p class="sub">Nhập thông tin của bạn, trang sẽ tự lập lộ trình theo từng giai đoạn: chuyên môn, kỹ năng mềm, kỹ năng số, ngoại ngữ, hoạt động và minh chứng cần tích lũy.</p>
+
+<form id="form" class="card">
+<h2 style="margin-top:0">Thông tin của bạn</h2>
+<div class="row">
+<div><label for="major">Ngành học</label><select id="major"></select></div>
+<div><label for="dir">Hướng nghề</label><select id="dir"></select></div>
+</div>
+<label for="goal">Mục tiêu nghề nghiệp cụ thể (không bắt buộc)</label>
+<input id="goal" placeholder="VD: Lập trình viên backend tại công ty công nghệ">
+<div class="row">
+<div><label for="clear">Bạn đã rõ mục tiêu nghề nghiệp chưa?</label>
+<select id="clear"><option>Đã rõ ràng</option><option>Đang phân vân nhiều hướng</option><option>Chưa có định hướng</option></select></div>
+<div><label for="year">Bạn đang học năm mấy?</label>
+<select id="year"><option value="1">Năm 1</option><option value="2">Năm 2</option><option value="3">Năm 3</option><option value="4">Năm 4</option></select></div>
+</div>
+<div class="row">
+<div><label for="prio">Ưu tiên lớn nhất học kỳ tới</label>
+<select id="prio"><option>Thi chứng chỉ ngoại ngữ / tin học</option><option>Nâng cao GPA</option><option>Rèn kỹ năng mềm</option><option>Tham gia CLB, ngoại khóa</option><option>Dự án cá nhân / nghiên cứu khoa học</option><option>Tìm thực tập / làm thêm</option></select></div>
+<div><label for="sal">Mức lương mong muốn sau khi ra trường (triệu đồng/tháng)</label>
+<select id="sal"><option>Dưới 10</option><option selected>10 – 15</option><option>15 – 25</option><option>25 – 40</option><option>Trên 40</option></select></div>
+</div>
+<label for="hrs">Giờ tự học mỗi tuần</label>
+<input id="hrs" type="number" min="0" max="80" value="10">
+<label>Bạn thấy mình còn yếu ở đâu? (chọn nhiều)</label>
+<div class="chips" id="weak"></div>
+<div class="bar"><button type="submit" class="p">✨ Lập lộ trình</button></div>
+</form>
+
+<section id="result">
+<div class="bar noprint" style="margin:0 0 12px"><button id="print">🖨️ In / lưu PDF</button><button id="back">↩ Nhập lại thông tin</button></div>
+<nav class="tabs noprint" id="tabs"></nav>
+<div class="card" id="summary" data-p="home"></div>
+
+<div class="card" data-p="reflect">
+<h2 style="margin-top:0">✍️ Rút kinh nghiệm cuối năm</h2>
+<div id="reflect">
+<label for="r1">✅ Năm qua mình đã làm tốt điều gì?</label><textarea id="r1"></textarea>
+<label for="r2">⚠️ Điều gì chưa tốt, vì sao?</label><textarea id="r2"></textarea>
+<label for="r3">🎯 Năm sau mình sẽ thay đổi gì?</label><textarea id="r3"></textarea>
+<div class="bar"><button id="saveR" class="p">Lưu</button><span id="saved" class="sub" style="align-self:center"></span></div>
+</div>
+</div>
+
+<h2 data-p="home">🔥 3 việc nên làm ngay</h2>
+<div class="card" data-p="home"><ol class="todo" id="todo"></ol></div>
+
+<h2 data-p="road">🗺️ Lộ trình theo giai đoạn</h2>
+<div class="card" id="roadmap" data-p="road"></div>
+
+<h2 data-p="certs">🏅 Chứng chỉ &amp; khóa học gợi ý</h2>
+<div class="card" data-p="certs"><ul id="certs"></ul></div>
+
+<h2 data-p="log">📁 Nhật ký minh chứng</h2>
+<div class="card" data-p="log">
+<p class="sub">Ghi chứng chỉ, dự án, giải thưởng, hoạt động… để dùng khi xin việc.</p>
+<div class="row" style="grid-template-columns:1fr auto"><input id="ev" placeholder="VD: IELTS 6.5 – 03/2026"><button id="addEv" class="p">Thêm</button></div>
+<label for="evImg" style="font-weight:500;color:var(--mut)">📷 Hoặc nộp ảnh minh chứng (chứng chỉ, giấy khen, sản phẩm…). Dòng chữ ở ô trên sẽ làm chú thích cho ảnh.</label>
+<input type="file" id="evImg" accept="image/*">
+<div id="logs"></div>
+</div>
+<div class="card fin" id="final" data-p="final"></div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const DATA={
+"Công nghệ thông tin":{dirs:["Lập trình web / phần mềm","Khoa học dữ liệu / AI","An toàn thông tin","Kiểm thử phần mềm"],
+ core:["Cấu trúc dữ liệu & giải thuật, CSDL","Lập trình hướng đối tượng, Git, làm dự án nhóm","Làm 2–3 dự án thật, đưa lên GitHub","Thực tập, hoàn thiện đồ án tốt nghiệp"],
+ certs:["Khóa CS50 / Google IT","AWS Cloud Practitioner","Chứng chỉ ngôn ngữ/framework theo hướng nghề"]},
+"Kinh tế / Quản trị kinh doanh":{dirs:["Phân tích kinh doanh","Quản trị nhân sự","Khởi nghiệp","Ngân hàng – tài chính"],
+ core:["Kinh tế vi mô/vĩ mô, thống kê","Marketing, tài chính, quản trị căn bản","Case study, dự án phân tích thực tế","Thực tập, khóa luận gắn doanh nghiệp"],
+ certs:["Excel / Power BI cơ bản","Google Analytics","MOS Excel, chứng chỉ chuyên ngành tài chính"]},
+"Kế toán – Kiểm toán":{dirs:["Kế toán doanh nghiệp","Kiểm toán","Thuế"],
+ core:["Nguyên lý kế toán, kế toán tài chính","Kế toán quản trị, thuế","Phần mềm kế toán, thực hành sổ sách","Thực tập tại công ty kiểm toán/kế toán"],
+ certs:["MISA / FAST","ACCA / CPA (lộ trình dài)","MOS Excel"]},
+"Marketing – Truyền thông":{dirs:["Digital marketing","Content / Copywriting","PR – Sự kiện"],
+ core:["Nguyên lý marketing, hành vi người tiêu dùng","Viết nội dung, thiết kế cơ bản","Chạy chiến dịch nhỏ, xây portfolio","Thực tập agency / brand"],
+ certs:["Google Ads / Meta Blueprint","HubSpot Content Marketing","Canva / Adobe cơ bản"]},
+"Ngôn ngữ Anh":{dirs:["Biên – phiên dịch","Giảng dạy","Tiếng Anh thương mại"],
+ core:["Ngữ âm, ngữ pháp, 4 kỹ năng nâng cao","Dịch thuật, văn hóa các nước","Thực hành dịch/giảng dạy thực tế","Thực tập, khóa luận"],
+ certs:["IELTS 7.0+","TESOL / CELTA","Chứng chỉ nghiệp vụ biên-phiên dịch"]},
+"Sư phạm":{dirs:["Giáo viên phổ thông","Giáo dục STEM","Gia sư / trung tâm"],
+ core:["Tâm lý học, giáo dục học","Phương pháp dạy học bộ môn","Dạy thử, kiến tập","Thực tập sư phạm, chuẩn bị tuyển dụng"],
+ certs:["Chứng chỉ nghiệp vụ sư phạm","Tin học văn phòng nâng cao","Kỹ năng ứng dụng AI trong dạy học"]},
+"Khác":{dirs:["Chưa xác định – cần khám phá","Nghiên cứu / học tiếp","Làm việc doanh nghiệp"],
+ core:["Học chắc môn nền tảng của ngành","Môn chuyên ngành & đọc tài liệu nghề","Dự án / nghiên cứu nhỏ","Thực tập & đồ án tốt nghiệp"],
+ certs:["Tin học văn phòng","Ngoại ngữ theo chuẩn đầu ra","Khóa online theo ngành trên Coursera/edX"]}
+};
+const WEAK=["Ngoại ngữ","Giao tiếp / thuyết trình","Quản lý thời gian","Công cụ số","Chưa có kinh nghiệm thực tế","Thiếu người định hướng (mentor)","Thiếu kỷ luật, dễ nản","Chưa hiểu chương trình đào tạo","Thiếu thông tin thị trường lao động"];
+const WTIP={"Ngoại ngữ":"Học tiếng Anh 30 phút/ngày, đặt mục tiêu chứng chỉ rõ ràng.","Giao tiếp / thuyết trình":"Đăng ký thuyết trình ở mọi môn, tham gia CLB tranh biện/MC.","Quản lý thời gian":"Dùng lịch tuần + quy tắc 3 việc ưu tiên mỗi ngày.","Công cụ số":"Học Excel, Notion, công cụ AI và công cụ chuyên ngành.","Chưa có kinh nghiệm thực tế":"Làm dự án cá nhân, làm thêm bán thời gian hoặc thực tập.","Thiếu người định hướng (mentor)":"Hỏi thầy cô, anh chị khóa trên; nhắn LinkedIn xin 15 phút trò chuyện.","Thiếu kỷ luật, dễ nản":"Chia nhỏ mục tiêu, học nhóm, theo dõi chuỗi ngày học.","Chưa hiểu chương trình đào tạo":"Đọc kỹ khung chương trình, gặp cố vấn học tập.","Thiếu thông tin thị trường lao động":"Đọc 10 tin tuyển dụng đúng hướng nghề, ghi lại kỹ năng được yêu cầu nhiều nhất."};
+const ST={};try{Object.assign(ST,JSON.parse(localStorage.getItem("lt")||"{}"))}catch(e){}
+function save(){try{localStorage.setItem("lt",JSON.stringify(ST))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+
+$("#major").innerHTML=Object.keys(DATA).map(m=>`<option>${m}</option>`).join("");
+function fillDirs(){$("#dir").innerHTML=DATA[$("#major").value].dirs.map(d=>`<option>${d}</option>`).join("")}
+$("#major").onchange=fillDirs;fillDirs();
+$("#weak").innerHTML=WEAK.map(w=>`<label><input type="checkbox" value="${w}">${w}</label>`).join("");
+
+
+function build(p){
+ const D=DATA[p.major],y=+p.year;
+ const phases=[
+  ["Năm 1 – Nền tảng","Làm quen, xây thói quen học",["Học chắc môn đại cương và nền tảng ngành","Đặt mục tiêu GPA, lập lịch học cố định","Thử 1–2 CLB để khám phá sở thích","Ngoại ngữ: ôn lại nền, làm bài test đầu vào"]],
+  ["Năm 2 – Chuyên môn","Đào sâu chuyên ngành, bắt đầu làm sản phẩm",[D.core[0],D.core[1],"Học công cụ số phục vụ hướng nghề","Ngoại ngữ: đạt mức chuẩn đầu ra"]],
+  ["Năm 3 – Thực hành","Tích lũy kinh nghiệm và minh chứng",[D.core[2],"Tham gia nghiên cứu / cuộc thi / dự án thật","Làm CV, hồ sơ năng lực, LinkedIn","Tìm thực tập hoặc làm thêm đúng hướng"]],
+  ["Năm 4 – Chuẩn bị đi làm","Hoàn thiện hồ sơ và ứng tuyển",[D.core[3],"Luyện phỏng vấn, đàm phán lương","Nộp hồ sơ nhiều vị trí, giữ liên hệ với mentor","Đồ án / khóa luận gắn thực tế doanh nghiệp"]]
+ ];
+ const cats=[["Kỹ năng mềm","Giao tiếp, làm việc nhóm, thuyết trình"],["Kỹ năng số","Excel, công cụ AI, công cụ ngành"],["Ngoại ngữ","Tiếng Anh theo mục tiêu nghề"],["Minh chứng","Lưu chứng chỉ, sản phẩm, giải thưởng"]];
+ $("#summary").innerHTML=`<b>${esc(p.major)}</b> → <b>${esc(p.dir)}</b>${p.goal?`<br>Mục tiêu: <i>${esc(p.goal)}</i>`:""}<br><span class="sub">Lương mong muốn: ${esc(p.sal)} triệu/tháng · Tự học ${p.hrs} giờ/tuần (~${Math.round(p.hrs/7*10)/10} giờ/ngày) · ${esc(p.clear)}</span>${p.hrs<8?'<br>⚠️ Quỹ giờ tự học còn thấp; nên tăng dần lên 10–15 giờ/tuần.':''}`;
+ const extra=["Tổng kết","Cuối năm tự đánh giá và cập nhật nhật ký minh chứng"];
+ $("#roadmap").innerHTML=phases.map((ph,i)=>{const items=[...ph[2].map(x=>["Chuyên môn",x]),...cats,extra];return `<div class="phase ${i+1===y?'cur':''}"><h3>${ph[0]} <span class="tag" id="pc${i}">0/9</span>${i+1===y?'<span class="tag">Bạn đang ở đây</span>':''}</h3><div class="sub">${ph[1]}</div><ul>${items.map((c,j)=>`<li><label class="ck"><input type="checkbox" data-k="${i}-${j}"><span><span class="tag">${c[0]}</span>${esc(c[1])}</span></label></li>`).join("")}</ul></div>`}).join("");
+ document.querySelectorAll("#roadmap input").forEach(b=>{b.checked=!!(ST.done||{})[b.dataset.k];b.onchange=()=>{ST.done=ST.done||{};ST.done[b.dataset.k]=b.checked;save();upd()}});
+ const todo=[];
+ const pt={"Thi chứng chỉ ngoại ngữ / tin học":"Chọn chứng chỉ, đăng ký lịch thi và lập kế hoạch ôn 8–12 tuần.","Nâng cao GPA":"Liệt kê môn nhiều tín chỉ, dành giờ cố định mỗi tuần cho từng môn.","Rèn kỹ năng mềm":"Đăng ký 1 khóa/CLB rèn thuyết trình hoặc làm việc nhóm.","Tham gia CLB, ngoại khóa":"Chọn 1 CLB đúng hướng nghề và cam kết ít nhất 1 học kỳ.","Dự án cá nhân / nghiên cứu khoa học":"Chọn đề tài nhỏ, hỏi một giảng viên làm người hướng dẫn.","Tìm thực tập / làm thêm":"Cập nhật CV và nộp 5 vị trí thực tập trong 2 tuần tới."};
+ todo.push("Ưu tiên học kỳ tới: "+pt[p.prio]);
+ p.weak.slice(0,2).forEach(w=>todo.push(WTIP[w]));
+ if(p.clear!=="Đã rõ ràng")todo.push("Chưa rõ hướng đi: phỏng vấn 3 người đang làm nghề bạn quan tâm để so sánh.");
+ const defs=["Làm bản CV đầu tiên và bắt đầu nhật ký minh chứng bên dưới.","Gặp cố vấn học tập để rà soát chương trình đào tạo.","Đọc 10 tin tuyển dụng đúng hướng nghề, ghi lại kỹ năng cần có."];
+ while(todo.length<3)todo.push(defs[todo.length%3]);
+ $("#todo").innerHTML=todo.slice(0,3).map(t=>`<li>${esc(t)}</li>`).join("");
+ const certs=[...D.certs];
+ certs.push(["Dưới 10","10 – 15"].includes(p.sal)?"Chứng chỉ ngoại ngữ đạt chuẩn đầu ra (nền tảng để đi làm)":"IELTS 6.5+ hoặc tương đương để mở rộng cơ hội công ty lớn");
+ $("#certs").innerHTML=certs.map(c=>`<li>${esc(c)}</li>`).join("");
+}
+
+
+let cur=null;
+const PH=["Giai đoạn năm 1–2: Xây nền tảng vững chắc &amp; Chứng chỉ","Giai đoạn năm 3: Thực chiến doanh nghiệp &amp; Nhật ký minh chứng","Giai đoạn năm 4 &amp; Tương lai: Bứt phá thu nhập &amp; Đàm phán"];
+const PHD=["Học chắc kiến thức nền và chuyên ngành, hoàn thành chứng chỉ ngoại ngữ / tin học theo chuẩn đầu ra.","Tích cực ghi nhận các sản phẩm thực tế vào mục Minh chứng, săn các kỳ thực tập chất lượng cao đúng chuyên ngành hướng tới.","Hoàn thiện CV số, tối ưu hóa mạng lưới quan hệ để tự tin chinh phục mức lương kỳ vọng và phát triển sự nghiệp bền vững."];
+const SX={"Dưới 10":"Hoàn thành chuẩn đầu ra và có ít nhất một kỳ thực tập để chắc chắn vào được vị trí đầu vào.","10 – 15":"Kết hợp chứng chỉ ngoại ngữ / tin học với sản phẩm thực tế trong nhật ký minh chứng để nổi bật khi phỏng vấn.","15 – 25":"Cần ngoại ngữ tốt, ít nhất 1–2 kỳ thực tập chất lượng và dự án có kết quả đo lường được.","25 – 40":"Nhắm công ty lớn hoặc vị trí chuyên sâu: ngoại ngữ cao, thành tích nổi bật, mạng lưới quan hệ và dự án lớn.","Trên 40":"Cần năng lực hiếm: chuyên môn sâu, thành tích đột phá, ngoại ngữ thành thạo và khả năng chứng minh giá trị bằng kết quả."};
+function counts(){const d=ST.done||{};return [0,1,2,3].map(i=>{let n=0;for(let j=0;j<9;j++)if(d[i+"-"+j])n++;return n})}
+function upd(){counts().forEach((n,i)=>{const e=$("#pc"+i);if(e)e.textContent=n+"/9"});renderFinal()}
+function renderFinal(){
+ if(!cur)return;
+ const c=counts(),tot=c.reduce((a,b)=>a+b,0),pct=Math.round(tot/36*100),p=cur,n=(ST.logs||[]).length;
+ const lvl=pct<25?"mới bắt đầu hành trình":pct<60?"đang tiến triển tốt":"đã đi được phần lớn chặng đường";
+ const ready=`Bạn ${lvl}: hoàn thành <b>${tot}/36</b> đầu việc (${pct}%) và có <b>${n}</b> minh chứng trong nhật ký. Với ngành <b>${esc(p.major)}</b>, ${p.hrs>=12?"quỹ giờ tự học của bạn khá tốt, hãy giữ nhịp đều mỗi tuần.":"bạn nên tăng dần giờ tự học (mục tiêu 10–15 giờ/tuần) để theo kịp lộ trình."} ${p.clear==="Đã rõ ràng"?"Mục tiêu rõ ràng giúp bạn dồn nguồn lực đúng chỗ.":"Hãy sớm trò chuyện với người trong nghề để chốt hướng đi."}`;
+ const prof=[["Ngành &amp; hướng đi",esc(p.major)+" — "+esc(p.dir)],["Mức định hướng hiện tại",esc(p.clear)],["Ưu tiên trọng tâm",esc(p.prio)],["Mức lương mong muốn",esc(p.sal)+" triệu/tháng"],["Thời gian tự học",p.hrs+" giờ/tuần"],["Tiến độ 4 năm học",tot+" / 36 hoàn thành"]];
+ $("#final").innerHTML=`<span class="badge">TÓM TẮT &amp; CÁ NHÂN HÓA TOÀN DIỆN</span><h2 style="margin:.4em 0">Tổng quan lộ trình &amp; hướng đi dài hạn</h2><p class="sub">Dựa trên cấu hình, tiến độ thực tế các năm học và nhật ký minh chứng của bạn, đây là bản tổng kết chiến lược cá nhân hóa dành cho bạn.</p>
+<h3>🎯 Hồ sơ mục tiêu của bạn</h3><div class="grid3">${prof.map(x=>`<div><small>${x[0]}</small>${x[1]}</div>`).join("")}</div>
+<h3>💡 Phân tích &amp; lời khuyên cá nhân hóa</h3><div class="note"><b>Đánh giá mức độ sẵn sàng</b><br>${ready}</div><div class="note hi"><b>Chiến lược chinh phục mức lương ${esc(p.sal)} triệu/tháng</b><br>Ưu tiên hiện tại của bạn là <b>${esc(p.prio)}</b>. ${SX[p.sal]||""}</div>
+<h3>🧭 Hướng đi dài hạn &amp; cột mốc tương lai</h3>${PH.map((t,i)=>`<div class="ms"><span class="num">${i+1}</span><div><b>${t}</b><div class="sub" style="margin:2px 0 0;font-size:.9rem">${PHD[i]}</div></div></div>`).join("")}
+<div class="bar noprint" style="justify-content:space-between"><button id="toLog">← Xem nhật ký minh chứng</button><button id="back2" class="p">Cập nhật lại thiết lập ↻</button></div>
+<p class="sub" style="text-align:center;margin-bottom:0">Lộ trình học đại học gắn với mục tiêu nghề nghiệp © 2026</p>`;
+ $("#toLog").onclick=()=>{setTab("log");window.scrollTo(0,0)};
+ $("#back2").onclick=()=>{$("#back").click();window.scrollTo(0,0)};
+}
+function show(p){cur=p;build(p);upd();$("#form").style.display="none";$("#result").style.display="block";setTab(ST.tab||"home");window.scrollTo(0,0)}
+$("#form").onsubmit=e=>{e.preventDefault();
+ const p={major:$("#major").value,dir:$("#dir").value,goal:$("#goal").value.trim(),clear:$("#clear").value,year:$("#year").value,prio:$("#prio").value,sal:$("#sal").value,hrs:+$("#hrs").value||0,weak:[...document.querySelectorAll("#weak input:checked")].map(i=>i.value)};
+ ST.profile=p;save();show(p)};
+$("#back").onclick=()=>{$("#form").style.display="";$("#result").style.display="none"};
+$("#print").onclick=()=>window.print();
+
+const TABS=[["home","Tổng quan"],["road","Lộ trình"],["certs","Chứng chỉ"],["log","Minh chứng"],["reflect","Rút kinh nghiệm"],["final","Tổng kết"]];
+$("#tabs").innerHTML=TABS.map(t=>`<button type="button" data-t="${t[0]}">${t[1]}</button>`).join("");
+$("#tabs").onclick=e=>{const b=e.target.closest("button");if(b){setTab(b.dataset.t);window.scrollTo(0,0)}};
+function setTab(t){document.querySelectorAll("#result [data-p]").forEach(e=>e.classList.toggle("off",e.dataset.p!==t));document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));ST.tab=t;save()}
+["r1","r2","r3"].forEach(k=>{$("#"+k).value=(ST.ref||{})[k]||""});
+$("#saveR").onclick=()=>{ST.ref={r1:$("#r1").value,r2:$("#r2").value,r3:$("#r3").value};save();$("#saved").textContent="Đã lưu ✓"};
+
+function renderLogs(){
+ const L=ST.logs||[];setTimeout(renderFinal,0);
+ $("#logs").innerHTML=L.length?L.map((l,i)=>`<div class="log"><div>${l.img?`<img src="${l.img}" alt=""><br>`:""}${esc(l.t)}<br><small class="sub">${esc(l.d)}</small></div><button class="x" data-i="${i}" aria-label="Xóa">✕</button></div>`).join(""):'<p class="sub">Chưa có minh chứng nào.</p>';
+ document.querySelectorAll(".x").forEach(b=>b.onclick=()=>{ST.logs.splice(+b.dataset.i,1);save();renderLogs()});
+}
+function addLog(t,img){ST.logs=ST.logs||[];ST.logs.unshift({t:t||"Ảnh minh chứng",img:img||"",d:new Date().toLocaleDateString("vi-VN")});save();renderLogs();$("#ev").value="";$("#evImg").value=""}
+$("#addEv").onclick=()=>{const t=$("#ev").value.trim(),f=$("#evImg").files[0];
+ if(f){const r=new FileReader();r.onload=()=>{
+  const im=new Image();im.onload=()=>{const s=Math.min(1,300/im.width),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);addLog(t,c.toDataURL("image/jpeg",.7))};im.src=r.result};r.readAsDataURL(f)}
+ else if(t)addLog(t)};
+renderLogs();
+if(ST.profile)show(ST.profile);
+</script>
+</body>
+</html>
